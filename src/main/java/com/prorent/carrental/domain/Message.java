@@ -28,6 +28,7 @@ public class Message implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	@NotBlank(message="Please provide not blank name")
 	@NotNull(message="Please provide your name")
 	@Size(min=1,max=15,message="Your name '${validatedValue}' must be between {min} and {max} chracters long")
@@ -36,27 +37,24 @@ public class Message implements Serializable{
 	
 	@NotBlank(message="Please provide not blank subject")
 	@NotNull(message="Please provide your subject")
-	@Size(min=5,max=15,message="Your 'ValidateValue'must be between {min} and {max} characters long")
+	@Size(min=5,max=15,message="Your subject '${validatedValue}' must be between {min} and {max} chracters long")
 	@Column(length=15,nullable=false)
 	private String subject;
 	
-	@NotBlank(message="Please provide not blank subject")
+	
+	
+	@NotBlank(message="Please provide not blank body")
 	@NotNull(message="Please provide your body")
-	@Size(min=5,max=15,message="Your 'ValidateValue'must be between {min} and {max} characters long")
+	@Size(min=20,max=200,message="Your subject '{validatedValue}' must be between {min} and {max} chracters long")
 	@Column(length=200,nullable=false)
 	private String body;
 	
-	
-	
+
 	@NotNull(message="Please provide your email")
-	@Size(min=6,max=100,message="Your 'ValidateValue'must be between {min} and {max} characters long")
+	@Size(min=6,max=200,message="Your subject '{validatedValue}' must be between {min} and {max} chracters long")
 	@Email
 	@Column(length=50,nullable=false)
 	private String email;
 	
-	@Pattern(regexp = "^((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$",
-            message = "Please provide valid phone number")
-	@Column(length=14,nullable=false)
-	private String phoneNumber;
 	
 }

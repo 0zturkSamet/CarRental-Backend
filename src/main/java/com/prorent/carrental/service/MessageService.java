@@ -1,6 +1,6 @@
 package com.prorent.carrental.service;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -24,5 +24,13 @@ public class MessageService {
 		Message foundMessage = messageRespository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("id not found : " + id));
 		return foundMessage;
+	}
+	public List<Message> getAllMessages() {
+		return messageRespository.findAll();
+		
+	}
+	
+	public void deleteMessage(Long id) throws ResourceNotFoundException{
+		messageRespository.deleteById(id);
 	}
 }

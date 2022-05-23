@@ -33,4 +33,9 @@ public class MessageService {
 	public void deleteMessage(Long id) throws ResourceNotFoundException{
 		messageRespository.deleteById(id);
 	}
+	
+	
+	public Message updateMessage(Message message) {
+		return messageRespository.save(message);
+	}
 }

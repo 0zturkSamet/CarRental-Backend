@@ -3,13 +3,14 @@ package com.prorent.carrental.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.prorent.carrental.domain.Message;
 import com.prorent.carrental.exception.ResourceNotFoundException;
 import com.prorent.carrental.repository.MessageRespository;
 
 import lombok.AllArgsConstructor;
-
+@Transactional
 @AllArgsConstructor
 @Service
 public class MessageService {

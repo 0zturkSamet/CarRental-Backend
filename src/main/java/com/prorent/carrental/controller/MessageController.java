@@ -64,8 +64,11 @@ public class MessageController {
 		map.put("id", String.valueOf(id.longValue()));
 		return new ResponseEntity<>(map, HttpStatus.OK);
 	}
-	@PutMapping("/{id=")
-	public ResponseEntity<Message> updateMessage(@PathVariable Long id , @RequestBody Message message) {
+	
+	
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<Message> updateMessage(@Valid @PathVariable Long id , @RequestBody Message message) {
 		Message foundMessage=messageService.getMessage(id);
 		foundMessage.setBody(message.getBody());
 		foundMessage.setSubject(message.getSubject());

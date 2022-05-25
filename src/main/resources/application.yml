@@ -21,3 +21,15 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update 
+logging:
+  file:
+    name: logs/prorent.log
+  pattern:
+    file: "%d %-5level [%thread] %logger:%msg%n"   
+    level:
+    org.springframework.web: DEBUG
+    com.prorent: DEBUG
+    org.hibernate: DEBUG
+      
+     
+    

@@ -29,16 +29,19 @@ import com.prorent.carrental.security.service.UserDetailsServiceImpl;
 import lombok.AllArgsConstructor;
 
 
+@SuppressWarnings("deprecation")
 @Configuration
 @AllArgsConstructor
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled=true)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
-	private UserDetailsServiceImpl userDetailsServiceImpl;
+	private  UserDetailsServiceImpl userDetailsServiceImpl;
 	
 	private final AuthEntryPointJwt unauthorizedHandler;
 
+	
+	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -56,25 +59,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsServiceImpl)
+		auth	
+		.userDetailsService(userDetailsServiceImpl)
 		.passwordEncoder(passwordEncoder());
 	}
 	
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().cors().disable().sessionManagement()
+		http.csrf().disable()
+		
+		.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+		.sessionManagement()
 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 		.authorizeHttpRequests().antMatchers("/register").permitAll()
 		.anyRequest().authenticated();
 		
-		
-		
+		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		
+		super.configure(web);
 	}
 	
 	

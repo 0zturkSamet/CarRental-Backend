@@ -2,6 +2,8 @@ package com.prorent.carrental.security.service;
 
 
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,6 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	
 	
 	@Override
+	@Transactional
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		User user=userRepository.findByEmail(email).orElseThrow(()->new ResourceNotFoundException
 				("User not found with email:"+email));

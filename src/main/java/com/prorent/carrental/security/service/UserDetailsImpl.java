@@ -33,7 +33,7 @@ public class UserDetailsImpl implements UserDetails {
 	
 	// we build our roles as springBoot wants
 	public static UserDetailsImpl build(User user) {
-		List<SimpleGrantedAuthority> authorities = user.getRoles().stream()
+		List<SimpleGrantedAuthority> authorities = user.getRole().stream()
 				.map(role -> new SimpleGrantedAuthority(role.getName().name())).collect(Collectors.toList());
 		return new UserDetailsImpl(user.getId(), user.getEmail(), user.getPassword(), authorities);
 	} 

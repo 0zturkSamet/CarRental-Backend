@@ -1,11 +1,10 @@
 package com.prorent.carrental.security.config;
 
-import java.util.Arrays;
 
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
+
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -17,11 +16,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
-
 import com.prorent.carrental.security.AuthEntryPointJwt;
 import com.prorent.carrental.security.AuthTokenFilter;
 import com.prorent.carrental.security.service.UserDetailsServiceImpl;
@@ -72,7 +66,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 		.sessionManagement()
 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-		.authorizeHttpRequests().antMatchers("/register").permitAll()
+		.authorizeHttpRequests().antMatchers("/register","/login","/car/visitors/**").permitAll()
 		.anyRequest().authenticated();
 		
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

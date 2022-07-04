@@ -1,7 +1,6 @@
 package com.prorent.carrental.domain;
 
 import java.io.Serializable;
-
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
@@ -19,7 +18,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
+import com.prorent.carrental.domain.enumaration.ReservationStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,8 +28,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name="tbl_reservation")
 @Entity
 public class Reservation implements Serializable {
@@ -66,7 +65,9 @@ public class Reservation implements Serializable {
 	@Column(length=100,nullable=false)
 	private String dropOffLocation;
 	
-	
+	@Enumerated(EnumType.STRING)
+	@Column(length=20,nullable=false)
+	private ReservationStatus status;
 	
 	@Column(nullable=false)
 	private Double totalPrice;

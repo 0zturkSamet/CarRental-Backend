@@ -66,6 +66,14 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 	}
 	
 	//reservation exception
+	@ExceptionHandler(ReservationTimeException.class)
+	protected ResponseEntity<Object> handleReservationTimeException
+	(ReservationTimeException ex, 
+			WebRequest request) {
+		
+		ErrorMessage errorDetails=new ErrorMessage(new Date(),ex.getMessage(),request.getDescription(false));
+		return new ResponseEntity<>(errorDetails,HttpStatus.BAD_REQUEST);
+	}
 	
 	
 	  @Override

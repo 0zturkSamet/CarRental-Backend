@@ -1,46 +1,51 @@
 
 server:
-  port: 9090
+  port: ${SERVER_PORT:9090}
   error:
-    
     include-stacktrace: never
   servlet:
-    context-path: /car-rental/api  
+    context-path: /car-rental/api
 
-    
- 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/prorent_db
-    username: prorentuser
-    password: 1234
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/prorent_db}
+    username: ${DB_USERNAME:prorentuser}
+    password: ${DB_PASSWORD:changeme}
     driver-class-name: org.postgresql.Driver
-    
+
   jpa:
-    show-sql: true
+    show-sql: ${JPA_SHOW_SQL:false}
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: update 
-      
+      ddl-auto: ${JPA_DDL_AUTO:update}
+
   servlet:
     multipart:
       max-request-size: 2MB
       max-file-size: 2MB
-          
+
+# CORS Configuration
+cors:
+  allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000,http://localhost:4200}
+  allowed-methods: ${CORS_ALLOWED_METHODS:GET,POST,PUT,DELETE,OPTIONS}
+  allowed-headers: ${CORS_ALLOWED_HEADERS:*}
+  allow-credentials: ${CORS_ALLOW_CREDENTIALS:true}
+
 logging:
   file:
     name: logs/prorent.log
   pattern:
-    file: "%d %-5level [%thread] %logger:%msg%n"   
-    level:
-    org.springframework.web: DEBUG
-    com.prorent: DEBUG
-    org.hibernate: DEBUG
-      
-     
+    file: "%d %-5level [%thread] %logger:%msg%n"
+  level:
+    root: INFO
+    org.springframework.web: ${LOG_LEVEL_WEB:INFO}
+    com.prorent: ${LOG_LEVEL_APP:INFO}
+    org.hibernate: ${LOG_LEVEL_HIBERNATE:WARN}
+
+
 prorent:
   app:
-    jwtSecret: prorent
-    #60*60*24*1000
-    jwtExpirationMs: 86400000     
-    
+    jwtSecret: ${JWT_SECRET:PLEASE_CHANGE_THIS_TO_A_SECURE_RANDOM_STRING_AT_LEAST_256_BITS_LONG}
+    jwtExpirationMs: ${JWT_EXPIRATION_MS:86400000}
+
+

@@ -5,7 +5,36 @@
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue.svg)](https://www.postgresql.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A professional, production-ready RESTful API for car rental management built with modern Spring Boot 3 and Java 21. This application demonstrates enterprise-level backend development practices including JWT authentication, role-based access control, and comprehensive API documentation.
+## About
+
+**CarRental-Backend** is an enterprise-grade RESTful API service designed to power modern car rental platforms. Built with cutting-edge technologies including Spring Boot 3 and Java 21, this backend solution provides a robust, scalable, and secure foundation for managing vehicle rental operations.
+
+### Purpose & Vision
+
+This project addresses the core backend requirements of car rental businesses by offering a complete, production-ready API that handles everything from user authentication to reservation management. Whether you're building a startup car-sharing platform or modernizing an existing rental service, this backend provides the essential infrastructure you need to get started quickly while maintaining professional code quality.
+
+### Key Highlights
+
+- **Production-Ready Architecture**: Enterprise-level design following industry best practices, clean code principles, and SOLID design patterns
+- **Modern Technology Stack**: Leverages the latest Java 21 LTS features and Spring Boot 3.3.5 for optimal performance and maintainability
+- **Security First**: Implements JWT-based stateless authentication, BCrypt password encryption, and role-based access control (RBAC) to ensure data protection
+- **Developer Friendly**: Comprehensive Swagger/OpenAPI documentation, clear code structure, and extensive configuration options make integration and customization straightforward
+- **Deployment Ready**: Docker support with docker-compose configuration enables seamless deployment across any environment
+
+### Use Cases
+
+This API is ideal for:
+- **Car Rental Businesses**: Traditional car rental companies looking to establish an online presence
+- **Car Sharing Platforms**: Peer-to-peer car sharing services requiring secure user and vehicle management
+- **Fleet Management**: Companies managing vehicle fleets and rental operations
+- **Learning & Portfolio Projects**: Developers seeking a real-world example of professional Spring Boot application architecture
+
+### Who Is This For?
+
+- **Backend Developers** seeking to understand production-level Spring Boot architecture
+- **Entrepreneurs** building car rental or mobility-as-a-service platforms
+- **Students & Job Seekers** looking for a portfolio project that demonstrates professional development skills
+- **Development Teams** needing a solid foundation to build upon for custom rental solutions
 
 ## Features
 
